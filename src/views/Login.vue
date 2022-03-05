@@ -52,13 +52,14 @@ export default {
       this.$refs.loginFormRef.resetFields()
     },
     login(){
+      //表单预验证
        this.$refs.loginFormRef.validate(async (valid) => {
          //如果不合法则返回
          if(!valid) return 
 
           const {data:result}  =  await this.$http.post('login',this.loginForm)
           
-          console.log(result)
+          /* console.log(result) */
           //清空输入框
           this.loginForm.username = ''
           this.loginForm.password = ''
