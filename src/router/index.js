@@ -1,9 +1,12 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-const Welcome = ()=>import('../views/Welcome.vue')
-const Login  = ()=>import('../views/Login.vue');
-const Home = ()=>import('../views/Home.vue');
+
 Vue.use(VueRouter)
+
+const Welcome = ()=>import('../views/Welcome.vue')
+const Login  = ()=>import('../views/Login.vue')
+const Home = ()=>import('../views/Home.vue')
+const Users = ()=>import('../views/user/Users.vue')
 
 const routes = [
   //重定向，默认是/login
@@ -28,6 +31,11 @@ const routes = [
         path:'/welcome',
         name:'welcome',
         component:Welcome,
+      },
+      {
+        path:'/users',
+        name:'users',
+        component:Users,
       }
     ]
   }

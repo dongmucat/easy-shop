@@ -35,7 +35,8 @@ export default {
       this.$messageBox.confirm('此操作将退出后台管理系统, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
-        type: 'warning'
+        type: 'warning',
+        center:true
       }).then(() => {
         this.$message({
           type: 'success',

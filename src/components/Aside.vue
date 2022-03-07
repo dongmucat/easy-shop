@@ -11,6 +11,7 @@
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#409eff"
+      :default-active = "activePath"
       :collapse="isCollapse"
       :collapse-transition="false"
     >
@@ -23,7 +24,7 @@
           <span>{{item.authName}}</span>
         </template>
     <!-- 二级菜单 -->
-          <el-menu-item :index="'/'+subItem.path" v-for="subItem in item.children" :key="subItem.id">
+          <el-menu-item :index="'/'+subItem.path" v-for="subItem in item.children" :key="subItem.id" @click="saveNavState('/'+subItem.path)">
             <i class="el-icon-menu"></i>
             <!-- 文本 -->
             <span>{{subItem.authName}}</span>
@@ -38,6 +39,7 @@ export default {
   name: 'Aside',
   created(){
     this.getMenuList()
+    this.activePath = window.sessionStorage.getItem('activePath')
   },
   data() {
     return {
@@ -49,7 +51,9 @@ export default {
         '102':'el-icon-tickets',
         '145':'el-icon-coin',
       },
-      isCollapse:false
+      isCollapse:false,
+      //被激活时候的activePath
+      activePath:''
     }
   },
   computed:{
@@ -58,7 +62,7 @@ export default {
   methods: {
     async getMenuList(){
       const {data:res}= await this.$http.get('menus')
-      console.log(res)
+      /* console.log(res) */
       //如果失败了
       if(res.meta.status !== 200){
         return this.$message.error(res.meta.msg)
@@ -71,8 +75,13 @@ export default {
     },
     handleMenu(){
       this.isCollapse = !this.isCollapse
+    },
+    saveNavState(activePath){
+    window.sessionStorage.setItem('activePath',activePath)
+    this.activePath = activePath
     }
   },
+
 }
 </script>
 

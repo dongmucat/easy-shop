@@ -23,8 +23,6 @@ axios.interceptors.request.use(function (config) {
 });
 
 
-
-
 new Vue({
   router,
   store,
