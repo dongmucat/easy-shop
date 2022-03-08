@@ -7,6 +7,8 @@ const Welcome = ()=>import('../views/Welcome.vue')
 const Login  = ()=>import('../views/Login.vue')
 const Home = ()=>import('../views/Home.vue')
 const Users = ()=>import('../views/user/Users.vue')
+const Rights = ()=>import('../views/power/Rights.vue')
+
 
 const routes = [
   //重定向，默认是/login
@@ -36,6 +38,11 @@ const routes = [
         path:'/users',
         name:'users',
         component:Users,
+      },
+      {
+        path:'/rights',
+        name:'rights',
+        component:Rights,
       }
     ]
   }
