@@ -174,7 +174,7 @@
         </span>
         <!-- 编辑用户弹窗区域 -->
       </el-dialog>
-            <el-dialog
+        <el-dialog
         title="编辑用户信息"
         :visible.sync="editDialogVisible"
         width="40%"
@@ -307,7 +307,6 @@ export default {
       /* 如果请求不成功 */
       if (res.meta.status !== 200) return this.$message.error('获取用户列表失败')
       /* 如果获取成功 */
-      console.log(res)
       this.userList = res.data.users
       this.total = res.data.total
     },
@@ -422,7 +421,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less" >
 .user-container {
   height: 100%;
   width: 100%;
@@ -436,4 +435,6 @@ export default {
   margin-top: 20px;
   font-size: 15px;
 }
+
+
 </style>
