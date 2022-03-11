@@ -28,7 +28,6 @@
         style="margin-bottom:20px"
       >
         <!-- 第一列：索引列 -->
-
         <el-table-column type="expand">
           <template v-slot=scope>
             <el-row
@@ -354,8 +353,9 @@ export default {
     },
     /* 通过递归的形式得到点击的角色的所有的三级权限，并且保存到 defKeys*/
     getLeafKeys(node,arr){
-      /* 如果node的孩子为空 */
+      /* 如果node的孩子为空,即：自己就是树叶 */
       if(!node.children){
+        //push到数组中
         return arr.push(node.id)
       }
       node.children.forEach(item => {
@@ -372,6 +372,7 @@ export default {
       }
       /* 如果成功 */
       /* 把获取到的权限数据保存到列表中 */
+      /* console.log(res.data); */
       this.rightsList = res.data
       this.getLeafKeys(role,this.defKeys)
       this.setRightDialogVisible = true
