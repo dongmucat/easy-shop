@@ -399,7 +399,7 @@ export default {
   methods: {
     /* 检测分配角色关闭事件 */
     setRoleDialogClosed(){
-      //清空下拉选择
+      /* 清空下拉选择 */
       this.selectedRoleId = '';
       this.userInfo = ''
     },
@@ -548,9 +548,7 @@ export default {
         this.editDialogVisible = false
         this.$message.success(res.meta.msg)
       })
-
     }
-
   },
 }
 </script>

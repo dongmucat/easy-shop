@@ -4,9 +4,14 @@ import router from './router'
 import store from './store'
 import './plugins/element.js'
 import axios from 'axios'
+import  TreeTable  from 'vue-table-with-tree-grid'
 //导入全局样式表
 import './assets/css/global.css'
 Vue.config.productionTip = false
+//注册表格组件
+Vue.component('tree-table',TreeTable)
+
+
 //设置基准地址
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
 Vue.prototype.$http = axios
