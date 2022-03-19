@@ -328,19 +328,15 @@
       }
     },
   }
-
 </script>
-
 <style lang="less" scoped>
   .catogory-container {
     height: 100%;
     width: 100%;
   }
-
   .el-breadcrumb {
     margin-bottom: 20px;
   }
-
   .el-cascader {
     width: 100%;
   }

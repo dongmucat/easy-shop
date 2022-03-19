@@ -175,7 +175,6 @@
                   ref="saveTagInput"
                   size="small"
                   @keyup.enter.native="handleInputConfirm(scope.row)"
-                  
                 >
                 </el-input>
                 <!-- 添加按钮 -->
@@ -237,7 +236,6 @@
           </el-table>
         </el-tab-pane>
       </el-tabs>
-
       <!-- 添加属性弹窗 -->
       <el-dialog
         :title="'添加'+titleText"
@@ -583,21 +581,17 @@ export default {
 }
 
 </script>
-
 <style lang="less" scoped>
 .btn {
   margin-bottom: 20px;
 }
-
 .catogory-container {
   height: 100%;
   width: 100%;
 }
-
 .el-breadcrumb {
   margin-bottom: 20px;
 }
-
 .cate_opt {
   margin: 20px 0;
 
@@ -605,7 +599,6 @@ export default {
     font-size: 15px;
   }
 }
-
 .el-tag {
   margin: 5px;
 }
