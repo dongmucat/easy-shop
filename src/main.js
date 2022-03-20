@@ -5,6 +5,7 @@ import store from './store'
 import './plugins/element.js'
 import axios from 'axios'
 import  TreeTable  from 'vue-table-with-tree-grid'
+import Moment from 'moment'
 //导入全局样式表
 import './assets/css/global.css'
 Vue.config.productionTip = false
@@ -27,6 +28,10 @@ axios.interceptors.request.use(function (config) {
   return Promise.reject(error);
 });
 
+/* 过滤器 */
+Vue.filter('dateFormat',function (value) {
+  return Moment(value).format('YYYY-MM-DD HH:mm:ss')
+})
 
 new Vue({
   router,

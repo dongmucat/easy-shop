@@ -10,3 +10,10 @@ html,body,#app{
 .el-cascader-panel{
     max-height: 200px;
 }
+
+.el-breadcrumb {
+    margin-bottom: 20px;
+  }
+.el-steps{
+    margin: 20px 0;
+}
