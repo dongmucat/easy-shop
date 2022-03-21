@@ -323,8 +323,6 @@
         //如果成功,将数据赋值给this.cateList
         this.cateList = res.data.result;
         this.total = res.data.total;
-        /*  this.$message.success('获取商品分类数据列表成功'); */
-        /* console.log(res.data); */
       }
     },
   }

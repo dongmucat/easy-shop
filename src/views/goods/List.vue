@@ -69,27 +69,8 @@
     },
     data() {
       return {
-        /* 控制添加商品弹窗 */
-        addGoodsDialogVisible: false,
-        /* 添加商品规则 */
-        addGoodsFormRules: {
-          goods_name: [{
-            required: true,
-            message: '请输入用户名',
-            trigger: 'blur'
-          }],
-        },
-        /* 添加商品 */
-        addGoodsForm: {
-          goods_name: '',
-          goods_cat: '',
-          goods_price: '',
-          goods_number: '',
-          goods_weight: '',
-          goods_introduce: '',
-          pics: '',
-          attrs: '',
-        },
+
+
         /* 商品列表 */
         goodsList: [],
         /* 请求信息 */
@@ -105,7 +86,7 @@
     methods: {
       /* 跳转到添加商品页面 */
       goAddGoods() {
-          this.$router.push('/goods/add');
+        this.$router.push('/goods/add');
       },
       /* 删除商品 */
       async deleteGoods(id) {

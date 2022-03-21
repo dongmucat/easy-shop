@@ -368,7 +368,7 @@
       },
       /* 获取参数列表 */
       async getParamsList() {
-        if (this.cateId === null) return this.$message.info('请选择商品分类!')
+        if (this.cateId === null) return this.$message.info('请选择第三级商品分类!')
         const {
           data: res
         } = await this.$http.get(`categories/${this.cateId}/attributes`, {
