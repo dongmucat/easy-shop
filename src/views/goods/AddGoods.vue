@@ -45,7 +45,6 @@
               <el-cascader v-model="addGoodsForm.goods_cat" :options="cateList" :props="cascaderProps"
                 @change="handleChange()">
               </el-cascader>
-              </el-cascader>
             </el-form-item>
           </el-tab-pane>
           <el-tab-pane label="商品参数" name="1">
@@ -69,7 +68,10 @@
             </el-upload>
 
           </el-tab-pane>
-          <el-tab-pane label="商品内容" name="4">定时任务补偿</el-tab-pane>
+          <el-tab-pane label="商品内容" name="4">
+            <quill-editor ref="myQuillEditor" v-model="addGoodsForm.goods_introduce" class="ql-editor" />
+            <el-button type="primary" style="margin-top:20px;margin-left:12px" @click="addGoods()">添加商品</el-button>
+          </el-tab-pane>
         </el-tabs>
       </el-form>
     </el-card>
@@ -98,7 +100,7 @@
     },
     data() {
       return {
-        previewVisible:false,
+        previewVisible: false,
         /* 图片预览路径 */
         previewPath: '',
         /* 图片上传的请求头 */
@@ -154,15 +156,62 @@
           goods_name: '',
           /* 商品所属的分类数组 */
           goods_cat: [],
-          goods_price: 0,
-          goods_number: 0,
-          goods_weight: 0,
+          goods_price: '',
+          goods_number: '',
+          goods_weight: '',
           pics: [],
+          goods_introduce: '',
+          attrs: []
         },
         activeIndex: '0',
       }
     },
     methods: {
+      /* 添加商品 */
+      addGoods() {
+        this.$refs.addGoodsFormRef.validate(
+          (async valid => {
+            if (!valid) {
+              return this.$message.error('请填写必要项！')
+            }
+            /* 如果表单与验证通过 */
+            /* 发起数据请求 */
+            /* 数据预处理 */
+
+
+            /* 处理动态参数和静态属性 */
+            this.manyTableData.forEach(item => {
+              const info = {
+                attr_id: item.attr_id,
+                attr_value: item.attr_vals
+              };
+              this.addGoodsForm.attrs.push(info);
+            })
+            this.onlyTableData.forEach(item => {
+              const info = {
+                attr_id: item.attr_id,
+                attr_value: item.attr_vals
+              };
+              this.addGoodsForm.attrs.push(info);
+            })
+            /* 深拷贝 */
+            const addForm = JSON.parse(JSON.stringify(this.addGoodsForm));
+            addForm.goods_cat = addForm.goods_cat.join(',');
+            /* 发起请求 */
+            console.log(addForm);
+            const {
+              data: res
+            } = await this.$http.post('goods', addForm);
+            console.log(res);
+            if (res.meta.status !== 201) {
+              return this.$message.error(res.meta.msg);
+            }
+            /* 添加成功，并且跳转 */
+            this.$message.success('添加商品成功');
+            this.$router.push('/goods')
+          })
+        )
+      },
       /* 监听图片上传成功 */
       handleSuccess(res) {
         const info = {
@@ -183,7 +232,7 @@
       handlePreview(file) {
         this.previewPath = file.response.data.url;
         this.previewVisible = true;
-      
+
       },
       /* 标签页点击的时候 */
       async tabClicked() {
@@ -215,7 +264,7 @@
             }
           })
           if (res.meta.status !== 200) {
-            return this.$message.error("获取动态参数列表失败")
+            return this.$message.error("获取静态参数列表失败")
           }
           this.onlyTableData = res.data;
           console.log(this.onlyTableData);
@@ -233,6 +282,7 @@
         if (this.addGoodsForm.goods_cat.length !== 3) {
           this.$message.info('请选择第三级商品分类！');
           this.addGoodsForm.goods_cat = [];
+          return;
         }
         console.log(this.addGoodsForm.goods_cat);
       },
@@ -262,7 +312,9 @@
   .el-checkbox {
     margin: 0 5px 0 0 !important;
   }
-.imgPreview{
-  width: 100%;
-}
+
+  .imgPreview {
+    width: 100%;
+  }
+
 </style>
