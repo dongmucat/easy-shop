@@ -39,6 +39,7 @@ Vue.filter('dateFormat',function (value) {
   return Moment(value).format('YYYY-MM-DD HH:mm:ss')
 })
 
+
 new Vue({
   router,
   store,

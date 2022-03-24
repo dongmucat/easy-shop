@@ -12,7 +12,7 @@
       <el-row :gutter="20" style="margin-bottom:20px">
         <!-- 搜索区域 -->
         <el-col :span="7">
-          <el-input placeholder="请输入内容" v-model="queryInfo.query" clearable class="input-with-select"
+          <el-input placeholder="请输入内容" v-model="queryInfo.order_id" clearable class="input-with-select"
             @clear="getGoodsList()">
             <el-button slot="append" icon="el-icon-search" @click="getGoodsList()"></el-button>
           </el-input>
@@ -77,13 +77,16 @@
         queryInfo: {
           query: '',
           pagenum: 1,
-          pagesize: 10
+          pagesize: 10,
+
         },
         /* 总共的页数 */
         total: 0,
       }
     },
     methods: {
+      /*  */
+
       /* 跳转到添加商品页面 */
       goAddGoods() {
         this.$router.push('/goods/add');
