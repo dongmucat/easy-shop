@@ -76,6 +76,7 @@ Vue.use(Step)
 Vue.use(CheckboxGroup)
 Vue.use(Checkbox)
 Vue.use(Upload)
+Vue.use(Upload)
 
 Vue.prototype.$message = Message
 Vue.prototype.$messageBox = MessageBox

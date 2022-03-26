@@ -19,18 +19,18 @@
       <tree-table :data="cateList" :columns="columns" :selection-type="false" :expand-type="false" show-index border
         :show-row-hover="false" style="margin-bottom:20px;">
         <!-- 是否有效插槽 -->
-        <template slot="isOk" scope="scope">
+        <template slot="isOk" slot-scope="scope">
           <i class="el-icon-success" v-if="!scope.row.cat_deleted" style="color:lightgreen;"></i>
           <i class="el-icon-error" v-if="scope.row.cat_deleted" style="color:red;"></i>
         </template>
         <!-- 排序插槽 -->
-        <template slot="level" scope="scope">
+        <template slot="level" slot-scope="scope">
           <el-tag size="mini" v-if="scope.row.cat_level === 0">一级</el-tag>
           <el-tag type="success" size="mini" v-if="scope.row.cat_level === 1">二级</el-tag>
           <el-tag type="warning" size="mini" v-if="scope.row.cat_level === 2">三级</el-tag>
         </template>
         <!-- 操作插槽 -->
-        <template slot="action" scope="scope">
+        <template slot="action" slot-scope="scope">
           <!-- 删除 -->
 
           <el-button type="danger" icon="el-icon-delete" size="mini" round @click="deleteCate(scope.row.cat_id)">删除
